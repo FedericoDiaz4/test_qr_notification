@@ -7,10 +7,8 @@ app.use(express.json());
 
 app.get(`${url}/test`, (request, response) => {
   console.log("FUNCIONA PA");
-  response.json({
-    code: "200",
-    status: "OK",
-  });
+  res.send('Hello World!');
+
 });
 
 app.post(`${url}/test`, (request, response) => {
