@@ -7,7 +7,7 @@ app.use(express.json());
 
 app.get(`${url}/test`, (request, response) => {
   console.log("FUNCIONA PA");
-  res.send('Hello World!');
+  response.send('Hello World!');
 
 });
 
