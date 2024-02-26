@@ -1,19 +1,32 @@
-import express, { response } from "express";
+import express from "express";
 
 const app = express();
 const url = "/api";
+
+const idsMerchantOrders = [];
 
 app.use(express.json());
 
 app.get(`${url}/test`, (request, response) => {
   console.log("FUNCIONA PA");
-  response.send("Hello World!");
+  if (idsMerchantOrders.length > 0) {
+    const idResponse = idsMerchantOrders.shift();
+    response.status(200).json({ id: idResponse });
+  }
 });
 
 app.post(`${url}/test`, (request, response) => {
   console.log("recibido");
   const body = request.body;
   console.log(body);
+  console.log(body.topic);
+  console.log(body.resource);
+  if (body.topic == "merchant_order") {
+    parts = body.resource.split("/");
+    console.log(parts);
+    console.log(parts[-1]);
+    idsMerchantOrders.push(parts[-1]);
+  }
   response.status(200).json({
     code: "200",
     status: "OK",
