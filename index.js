@@ -27,7 +27,7 @@ app.post(`${url}/test`, (request, response) => {
   if (body.topic == "merchant_order") {
     const parts = body.resource.split("/");
     console.log(parts);
-    //console.log(parts[-1]);
+    console.log(parts[-1]);
     //idsMerchantOrders.push(parts[-1]);
   }
   response.status(200).json({
