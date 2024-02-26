@@ -2,24 +2,28 @@ import express from "express";
 
 const app = express();
 const url = "/api";
-
 const idsMerchantOrders = [];
 
 app.use(express.json());
 
 app.get(`${url}/test`, (request, response) => {
-  console.log("FUNCIONA PA");
+  console.log("Sistema CMSIS buscando ID");
   if (idsMerchantOrders.length > 0) {
-    const idResponse = idsMerchantOrders.shift();
+    const idResponse = idsMerchantOrders[0];
     response.status(200).json({ id: idResponse });
   } else {
     response.status(204).json({ error: "not data" });
   }
-  //response.send("<h1>Hola Mundo</h1>");
+});
+
+app.delete(`${url}/test`, (request, response) => {
+  console.log("Borrando");
+  const idDeleted = idsMerchantOrders.shift();
+  response.status(200).json({ idBorrado: idDeleted });
 });
 
 app.post(`${url}/test`, (request, response) => {
-  console.log("recibido");
+  console.log("Respuesta MP Recibida");
   const body = request.body;
   console.log(body);
   console.log(body.topic);
