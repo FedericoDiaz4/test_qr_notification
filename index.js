@@ -9,13 +9,11 @@ app.use(express.json());
 
 app.get(`${url}/test`, (request, response) => {
   console.log("FUNCIONA PA");
-  /*
   if (idsMerchantOrders.length > 0) {
     const idResponse = idsMerchantOrders.shift();
     response.status(200).json({ id: idResponse });
   }
-  */
-  response.send("<h1>Hola Mundo</h1>");
+  //response.send("<h1>Hola Mundo</h1>");
 });
 
 app.post(`${url}/test`, (request, response) => {
