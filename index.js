@@ -28,7 +28,7 @@ app.post(`${url}/test`, (request, response) => {
     const parts = body.resource.split("/");
     console.log(parts);
     console.log(parts[parts.length - 1]);
-    idMerchantOrder = parts[parts.length - 1];
+    const idMerchantOrder = parts[parts.length - 1];
     if (!idsMerchantOrders.includes(idMerchantOrder)) {
       idsMerchantOrders.push(parts[-1]);
     }
