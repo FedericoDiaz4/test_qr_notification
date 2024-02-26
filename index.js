@@ -12,6 +12,8 @@ app.get(`${url}/test`, (request, response) => {
   if (idsMerchantOrders.length > 0) {
     const idResponse = idsMerchantOrders.shift();
     response.status(200).json({ id: idResponse });
+  } else {
+    response.status(204).json({ error: "not data" });
   }
   //response.send("<h1>Hola Mundo</h1>");
 });
@@ -24,11 +26,9 @@ app.post(`${url}/test`, (request, response) => {
   console.log(body.resource);
   if (body.topic == "merchant_order") {
     const parts = body.resource.split("/");
-    console.log(parts);
-    console.log(parts[parts.length - 1]);
     const idMerchantOrder = parts[parts.length - 1];
     if (!idsMerchantOrders.includes(idMerchantOrder)) {
-      idsMerchantOrders.push(parts[-1]);
+      idsMerchantOrders.push(idMerchantOrder);
     }
   }
   response.status(200).json({
