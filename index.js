@@ -26,8 +26,6 @@ app.post(`${url}/test`, (request, response) => {
   console.log("Respuesta MP Recibida");
   const body = request.body;
   console.log(body);
-  console.log(body.topic);
-  console.log(body.resource);
   if (body.topic == "merchant_order") {
     const parts = body.resource.split("/");
     const idMerchantOrder = parts[parts.length - 1];
