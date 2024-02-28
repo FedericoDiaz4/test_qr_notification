@@ -18,7 +18,9 @@ app.get(`${url}/test`, (request, response) => {
 
 app.delete(`${url}/test`, (request, response) => {
   console.log("Borrando");
-  const idDeleted = idsMerchantOrders.shift();
+  console.log(idsMerchantOrders);
+  const idDeleted = idsMerchantOrders.slice(0, 1);
+  console.log(idsMerchantOrders);
   response.status(200).json({ idBorrado: idDeleted });
 });
 
