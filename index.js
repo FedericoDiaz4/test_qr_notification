@@ -20,7 +20,7 @@ app.delete(`${url}/test`, (request, response) => {
   console.log("Borrando");
   console.log(idsMerchantOrders);
   const idDeleted = idsMerchantOrders.slice(0, 1);
-  idsMerchantOrders = [];
+  idsMerchantOrders.length = 0;
   console.log(idsMerchantOrders);
   response.status(200).json({ idBorrado: idDeleted });
 });
