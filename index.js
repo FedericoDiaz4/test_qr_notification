@@ -6,6 +6,11 @@ const idsMerchantOrders = [];
 
 app.use(express.json());
 
+app.get(`${url}`, (request, response) => {
+  console.log("TEST");
+  response.status(200).send("<h1>Hola Mundo</h1>");
+});
+
 app.get(`${url}/test`, (request, response) => {
   console.log("Sistema CMSIS buscando ID");
   if (idsMerchantOrders.length > 0) {
