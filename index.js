@@ -44,7 +44,9 @@ app.post(`${url}/test`, (request, response) => {
     const parts = body.resource.split("/");
     const idMerchantOrder = parts[parts.length - 1];
     if (idsMerchantOrders.length > 0) {
-      idsMerchantOrders.slice(0, idsMerchantOrders.length);
+      idsMerchantOrders.splice(0, idsMerchantOrders.length);
+      idsMerchantOrders.push(idMerchantOrder);
+    } else {
       idsMerchantOrders.push(idMerchantOrder);
     }
   }
