@@ -1,4 +1,10 @@
 import express from "express";
+import https from "https";
+import fs from "fs";
+const options = {
+  key: fs.readFileSync("/etc/letsencrypt/live/cmsis.ar/privkey.pem"),
+  cert: fs.readFileSync("/etc/letsencrypt/live/cmsis.ar/fullchain.pem"),
+};
 
 const app = express();
 const url = "/api";
@@ -37,7 +43,8 @@ app.post(`${url}/test`, (request, response) => {
   if (body.topic == "merchant_order") {
     const parts = body.resource.split("/");
     const idMerchantOrder = parts[parts.length - 1];
-    if (!idsMerchantOrders.includes(idMerchantOrder)) {
+    if (idsMerchantOrders.length > 0) {
+      idsMerchantOrders.slice(0, idsMerchantOrders.length);
       idsMerchantOrders.push(idMerchantOrder);
     }
   }
@@ -48,6 +55,6 @@ app.post(`${url}/test`, (request, response) => {
 });
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
+https.createServer(options, app).listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
